@@ -1,0 +1,28 @@
+{% extends 'common/base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+    <form method="post" action="{% url 'delete account' appuser.pk %}" class="mt-5">
+        <div tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Are you sure you want to delete your account?</h5>
+                    </div>
+                    <div class="modal-body">
+                        Deleting your account will also delete:
+                        <ul>
+                            <li>All books you have posted;</li>
+                            <li>All authors you have posted;</li>
+                            <li>Books you or other users have associated with authors you have posted.</li>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{% url 'details profile' appuser.pk %}" type="button" class="btn btn-secondary"
+                           data-dismiss="modal">Cancel</a>
+                        <button type="submit" class="btn btn-primary">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% csrf_token %}
+    </form>
+{% endblock %}

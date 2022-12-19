@@ -1,0 +1,41 @@
+{% extends 'common/base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+    {% if not books %}
+    <h1 class="text-center mt-5">There are no books added in this category yet.</h1>
+    {% else %}
+    <div class="card-group w-75 p-3 m-auto">
+        {% for book in books %}
+            <div class="card">
+                <img class="card-img-top" src="{{ book.cover_photo }}" alt="Card image cap ">
+                <div class="card-body">
+                    <h5 class="card-title">{{ book.title }}</h5>
+                    <p class="card-text">by {{ book.author.full_name }}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'details book' book.slug %}" type="button" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="pagination mt-5 mb-2">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a type="button" class="btn btn-dark" href="?page=1">&laquo; first</a>
+            <a type="button" class="btn btn-dark" href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a type="button" class="btn btn-dark" href="?page={{ page_obj.next_page_number }}">next</a>
+            <a type="button" class="btn btn-dark" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+    </div>
+    {% endif %}
+
+{% endblock %}

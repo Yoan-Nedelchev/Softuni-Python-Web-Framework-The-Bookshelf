@@ -1,0 +1,39 @@
+{% extends 'common/base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+    <form method="post" action="{% url 'feedback' %}" class="w-50 mx-auto mt-5">
+        <h1 class="mb-3">Feedback form</h1>
+        <h6>We will be happy to hear what you think about our service!</h6>
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger px-3 py-2" role="alert">
+                {{ form.non_field_errors | striptags }}
+            </div>
+        {% endif %}
+        <!-- Title input -->
+        <div class="form-outline mb-1">
+            {#            <input type="text" id="form2Example1" name="title" class="form-control">#}
+            {{ form.title }}
+            <label class="form-label" for="form2Example1">Title</label>
+            {% if form.title.errors %}
+                <div class="alert alert-danger px-3 py-2" role="alert">
+                    {{ form.title.errors | striptags }}
+                </div>
+            {% endif %}
+        </div>
+        <!-- Content input -->
+        <div class="form-outline mb-1">
+            {#            <input type="text" id="form2Example1" name="title" class="form-control">#}
+            {{ form.content }}
+            <label class="form-label" for="form2Example1">Your feedback</label>
+            {% if form.content.errors %}
+                <div class="alert alert-danger px-3 py-2" role="alert">
+                    {{ form.content.errors | striptags }}
+                </div>
+            {% endif %}
+        </div>
+        <!-- Submit button -->
+        <button class="btn btn-primary btn-block mb-5">Send</button>
+        {% csrf_token %}
+    </form>
+{% endblock %}
+

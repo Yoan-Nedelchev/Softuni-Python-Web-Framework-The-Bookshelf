@@ -1,0 +1,79 @@
+.container {
+    border-top: 2px solid navy;
+    height:18.2vh;
+    position: relative;
+    bottom: -40px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    padding-top: 20px;
+    padding-bottom: 160px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start
+}
+
+.main-contact-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.icon-set {
+    display: flex;
+    gap: 7px;
+    justify-content: center;
+
+}
+
+.social-media-container {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.about {
+    margin-left: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 3px solid navy;
+    border-radius: 15px;
+    color: navy;
+    background-color: transparent;
+    font-size: 13px;
+    margin: auto;
+    margin-top: 12px;
+}
+
+.feedback {
+    margin-left: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 3px solid navy;
+    border-radius: 15px;
+    color: navy;
+    background-color: transparent;
+    font-size: 13px;
+    margin: auto;
+    margin-top: 1px;
+}
+
+.footer-heading {
+    font-weight: 500;
+    color: navy;
+    margin-bottom: 5px
+}
+
+.social-media-logo {
+    max-width: 30px;
+}

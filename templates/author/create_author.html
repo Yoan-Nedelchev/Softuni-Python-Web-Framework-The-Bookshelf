@@ -1,0 +1,73 @@
+{% extends 'common/base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+    <form method="post" action="{% url 'add author' %}" class="w-50 mx-auto mt-5">
+        <h1 class="mb-3">Add Author</h1>
+        <!-- First name input -->
+        <div class="form-outline mb-1">
+            <input type="text" id="form2Example1" name="first_name" class="form-control">
+            <label class="form-label" for="form2Example1">First Name</label>
+            {% if form.first_name.errors %}
+                <div class="alert alert-danger px-3 py-2" role="alert">
+                    {{ form.first_name.errors | striptags }}
+                </div>
+            {% endif %}
+        </div>
+          <!-- Last name input -->
+        <div class="form-outline mb-1">
+            <input type="text" id="form2Example1" name="last_name" class="form-control">
+            <label class="form-label" for="form2Example1">Last Name</label>
+            {% if form.last_name.errors %}
+                <div class="alert alert-danger px-3 py-2" role="alert">
+                    {{ form.last_name.errors | striptags }}
+                </div>
+            {% endif %}
+        </div>
+        <!-- Genre input -->
+        <div class="form-outline mb-1">
+            <select id="inputState" name="genre" class="form-control">
+                <option selected>---</option>
+                <option>Romance</option>
+                <option>Mystery</option>
+                <option>Fantasy and Science Fiction</option>
+                <option>Thrillers and Horrors</option>
+                <option>Young Adult</option>
+                <option>Self-help</option>
+                <option>Biography, Autobiography and Memoir</option>
+                <option>Esoteric</option>
+            </select>
+             <label for="inputState">Genre</label>
+        </div>
+        {% if form.genre.errors %}
+            <div class="alert alert-danger px-3 py-2" role="alert">
+                {{ form.genre.errors | striptags }}
+            </div>
+        {% endif %}
+
+        <!-- cover_photo input -->
+        <div class="form-outline mb-1">
+            <input type="url" id="form2Example2" name="photo" class="form-control"/>
+            <label class="form-label" for="form2Example2">Photo</label>
+        </div>
+        {% if form.photo.errors %}
+            <div class="alert alert-danger px-3 py-2" role="alert">
+                {{ form.photo.errors | striptags }}
+            </div>
+        {% endif %}
+
+        <!-- Description input -->
+        <div class="form-outline mb-1">
+            <textarea id="form2Example3" name="biography" class="form-control"></textarea>
+            <label class="form-label" for="form2Example3">Biography</label>
+        </div>
+        {% if form.biography.errors %}
+            <div class="alert alert-danger px-3 py-2" role="alert">
+                {{ form.biography.errors | striptags }}
+            </div>
+        {% endif %}
+        <!-- Submit button -->
+        <button class="btn btn-primary btn-block mb-5">Add</button>
+        {% csrf_token %}
+    </form>
+{% endblock %}
+

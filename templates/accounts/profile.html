@@ -1,0 +1,66 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% block content %}
+
+    <div class="card m-auto mt-5 mb-5" style="max-width: 800px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                {% if profile.photo %}
+                    <img src="{{ profile.photo }}" class="card-img" alt="...">
+                {% else %}
+                    <img src="{% static 'empty-profile.png' %}" class="card-img" alt="...">
+                {% endif %}
+            </div>
+            <div class="col-md-8 card-info card-info-container">
+                <div class="card-body">
+                    <h5 class="card-title">Username: {{ username }}</h5>
+                    {#                    <p class="card-text mb-0">Name: {{ profile.full_name }}</p>#}
+                    {#                    <p class="card-text mb-0">Age: {{ profile.age }}</p>#}
+                    <p class="card-text mb-0"><small class="text-muted">Name: {{ profile.full_name }}</small></p>
+                    <p class="card-text"><small class="text-muted">Age: {{ profile.age }}</small></p>
+                    <p class="card-text mb-0"><b>About me</b></p>
+                    <p class="card-text">{{ profile.bio }}</p>
+
+                </div>
+                {% if is_owner %}
+                    <div class="detail-view-buttons mb-3 ms-3">
+                        <a href="{% url 'edit profile' profile.pk %}" class="btn btn-primary">EDIT</a>
+                        <a href="{% url 'delete account' profile.pk %}" class="btn btn-danger">DELETE ACCOUNT</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% if authors_created %}
+        <div style="max-width: 800px; display: flex; flex-direction: column; margin: auto">
+            <h3>Authors added:</h3>
+            <ul class="list-group mb-5">
+                {% for author in authors_created %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ author.full_name }}
+                        <a href="{% url 'details author' author.pk %}" type="button" class="btn btn-primary">Details</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    {% endif %}
+
+    {% if books_posted %}
+        <div style="max-width: 800px; display: flex; flex-direction: column; margin: auto">
+            <h3>Books added:</h3>
+            <ul class="list-group mb-5">
+                {% for book in books_posted %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ book.title }} by {{ book.author.full_name }}
+                        <a href="{% url 'details book' book.slug %}" type="button" class="btn btn-primary">Details</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    {% endif %}
+
+{% endblock %}

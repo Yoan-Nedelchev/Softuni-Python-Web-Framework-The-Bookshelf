@@ -1,0 +1,16 @@
+{% extends 'common/base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+
+    <div class="list-group w-50 mx-auto mt-5">
+        <a href="{% url "filtered author list" genre="romance"%}" class="list-group-item list-group-item-action text-center">ROMANCE</a>
+        <a href="{% url "filtered author list" genre="mystery"%}" class="list-group-item list-group-item-action text-center">MYSTERY</a>
+        <a href="{% url "filtered author list" genre="fantasy-and-science-fiction"%}" class="list-group-item list-group-item-action text-center">FANTASY AND SCIENCE FICTION</a>
+        <a href="{% url "filtered author list" genre="thrillers-and-horrors"%}" class="list-group-item list-group-item-action text-center">THRILLERS AND HORROR</a>
+        <a href="{% url "filtered author list" genre="young-adult"%}" class="list-group-item list-group-item-action text-center">YOUNG ADULT</a>
+        <a href="{% url "filtered author list" genre="self-help"%}" class="list-group-item list-group-item-action text-center">SELF-HELP</a>
+        <a href="{% url "filtered author list" genre="biography-autobiography-and-memoir"%}" class="list-group-item list-group-item-action text-center">BIOGRAPHY, AUTOBIOGRAPHY AND MEMOIR</a>
+        <a href="{% url "filtered author list" genre="esoteric"%}" class="list-group-item list-group-item-action text-center">ESOTERIC</a>
+    </div>
+
+{% endblock %}

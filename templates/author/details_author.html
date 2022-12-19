@@ -1,0 +1,52 @@
+{% extends 'common/base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+
+    <div class="card m-auto mt-5 mb-5" style="max-width: 800px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="{{ author.photo }}" class="card-img" alt="...">
+            </div>
+            <div class="col-md-8 card-info card-info-container">
+                <div class="card-body">
+                    <h5 class="card-title">{{ author.full_name }}</h5>
+                    <p class="card-text mb-0"><small class="text-muted">Genre: <b><a style="text-decoration: none; color: gray" href="{% url 'filtered author list' genre_slug %}">{{ author.genre }}</a></b></small></p>
+                    <p class="card-text mb-0"><small class="text-muted">Posted by
+                        <b><a style="text-decoration: none; color: gray"
+                              href="{% url 'details profile' creator_profile.user_id %}">{{ creator_profile.full_name }}</a></b>
+                    </small></p>
+                     <p class="card-text"><small class="text-muted">Posted on {{ author.publication_date_and_time }}</small></p>
+                    <p class="card-text">{{ author.biography }}</p>
+
+                </div>
+                {% if is_owner %}
+                    <div class="detail-view-buttons mb-3 ms-3">
+                        <a href="{% url 'edit author' author.pk %}" class="btn btn-primary">EDIT</a>
+                        <a href="{% url 'delete author' author.pk %}" class="btn btn-danger">DELETE</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% if books %}
+        <h2 class="mb-3" style="text-align: center">Books by {{ author.full_name }}</h2>
+    {% else %}
+        <h2 class="text-center">There are no books associated with this author yet.</h2>
+    {% endif %}
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+        {% for book in books %}
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{{ book.cover_photo }}" class="card-img-top" alt="book.cover_photo">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.title }}</h5>
+                        <p class="card-text">by {{ author.full_name }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'details book' book.slug %}" type="button" class="btn btn-primary">Details</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

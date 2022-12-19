@@ -1,0 +1,12 @@
+<h1>Are you sure you want to log out?</h1>
+<form method="post" action="{% url 'sign out' %}">
+    {% for field in form %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+        {{ field.label_tag }} {{ field }}
+    </div>
+    {% endfor %}
+    <input type="hidden" name="next" value="{{ next }}">
+    <button>Yes</button>
+    {% csrf_token %}
+</form>

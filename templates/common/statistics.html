@@ -1,0 +1,42 @@
+{% extends 'common/base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+
+    {% if books_max_likes %}
+        <div class="mt-5" style="max-width: 800px; display: flex; flex-direction: column; margin: auto">
+            {% if books_max_likes.count > 1 %}
+                <h3>Books with most likes | number of likes: {{ books_max_likes.count }}</h3>
+            {% else %}
+                <h3>Book with most likes</h3>
+            {% endif %}
+            <ul class="list-group mb-5">
+                {% for book in books_max_likes %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ book.title }} by {{ book.author.full_name }}
+                        <a href="{% url 'details book' book.slug %}" type="button" class="btn btn-primary">Details</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    {% endif %}
+
+    {% if books_max_reviews %}
+        <div class="mt-5" style="max-width: 800px; display: flex; flex-direction: column; margin: auto">
+            {% if books_max_reviews.count > 1 %}
+                <h3>Books with most reviews | number of reviews: {{ books_max_reviews.count }}</h3>
+            {% else %}
+                <h3>Book with most reviews</h3>
+            {% endif %}
+            <ul class="list-group mb-5">
+                {% for book in books_max_reviews %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ book.title }} by {{ book.author.full_name }}
+                        <a href="{% url 'details book' book.slug %}" type="button" class="btn btn-primary">Details</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+{% endblock %}

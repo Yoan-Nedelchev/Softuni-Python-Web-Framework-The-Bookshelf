@@ -1,0 +1,25 @@
+{% extends 'common/base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+    <form method="post" action="{% url 'delete author' author.pk %}" class="mt-5">
+        <div tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Are you sure you want to delete this author?</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>Title: {{ author.full_name }}</p>
+                        <p>Genre: {{ author.genre }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{% url 'details author' author.pk %}" type="button" class="btn btn-secondary"
+                           data-dismiss="modal">Cancel</a>
+                        <button type="submit" class="btn btn-primary">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% csrf_token %}
+    </form>
+{% endblock %}
