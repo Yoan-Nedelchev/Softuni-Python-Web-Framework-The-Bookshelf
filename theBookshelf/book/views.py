@@ -70,6 +70,7 @@ class DetailsBookView(LoginRequiredMixin, DetailView):
         is_liked_by_user = book.like_set.filter(user_id=self.request.user.id).exists()
         reviews = book.bookreview_set.filter(book_id=book.pk).all()
         creator_profile = Profile.objects.get(user_id=book.creator_id)
+        creator_user = AppUser.objects.get(id=book.creator_id)
 
         reviews_complete_info = []
         for review in reviews:
@@ -80,7 +81,7 @@ class DetailsBookView(LoginRequiredMixin, DetailView):
                 'creation_time': review.publication_date_and_time,
                 'review_owner': self.request.user == user,
                 'review_id': review.pk,
-                'profile': Profile.objects.get(user_id=user.id)
+                'profile': Profile.objects.get(user_id=user.id),
             })
             print(reviews_complete_info)
 
@@ -88,7 +89,7 @@ class DetailsBookView(LoginRequiredMixin, DetailView):
         context['is_liked'] = is_liked_by_user
         context['reviews_complete_info'] = reviews_complete_info
         context['creator_profile'] = creator_profile
-
+        context['creator_user'] = creator_user
         return context
 
 

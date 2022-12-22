@@ -5,9 +5,9 @@
     {% if books_max_likes %}
         <div class="mt-5" style="max-width: 800px; display: flex; flex-direction: column; margin: auto">
             {% if books_max_likes.count > 1 %}
-                <h3>Books with most likes | number of likes: {{ books_max_likes.count }}</h3>
+                <h3>Books with most likes ({{ books_max_likes.count }}) | number of likes: {{ max_likes }}</h3>
             {% else %}
-                <h3>Book with most likes</h3>
+                <h3>Book with most likes | number of likes: {{ max_likes }}</h3>
             {% endif %}
             <ul class="list-group mb-5">
                 {% for book in books_max_likes %}
@@ -24,9 +24,9 @@
     {% if books_max_reviews %}
         <div class="mt-5" style="max-width: 800px; display: flex; flex-direction: column; margin: auto">
             {% if books_max_reviews.count > 1 %}
-                <h3>Books with most reviews | number of reviews: {{ books_max_reviews.count }}</h3>
+                <h3>Books with most reviews | number of reviews: {{ max_reviews }}</h3>
             {% else %}
-                <h3>Book with most reviews</h3>
+                <h3>Book with most reviews | number of reviews: {{ max_reviews }}</h3>
             {% endif %}
             <ul class="list-group mb-5">
                 {% for book in books_max_reviews %}

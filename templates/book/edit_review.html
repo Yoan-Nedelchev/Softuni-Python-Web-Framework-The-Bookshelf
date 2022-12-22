@@ -84,7 +84,6 @@
                                 <p>{{ review.content }}</p>
                                 <div class="d-flex justify-content-between">
                                     <div class="d-flex flex-row align-items-center align-self-end">
-                                        {#                                        TODO: link to image from user profile#}
                                         <a style="text-decoration: none; color: black"
                                            href="{% url 'details profile' review.profile.user_id %}"> <img
                                                 {% if review.profile.photo %}

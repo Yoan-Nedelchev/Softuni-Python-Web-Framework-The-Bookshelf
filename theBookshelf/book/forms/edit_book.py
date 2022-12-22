@@ -7,10 +7,10 @@ class EditBookForm(CreateBookForm):
         super(EditBookForm, self).__init__(*args, **kwargs)
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control'
-            if visible.auto_id == 'id_genre':
-                visible.field.disabled = True
-            elif visible.auto_id == 'id_author':
-                visible.field.disabled = True
+            # if visible.auto_id == 'id_genre':
+            #     visible.field.disabled = True
+            # elif visible.auto_id == 'id_author':
+            #     visible.field.disabled = True
 
     def clean_title(self):
         if self.cleaned_data['title'].strip() == '':

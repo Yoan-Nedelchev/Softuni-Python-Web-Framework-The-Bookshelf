@@ -10,12 +10,16 @@
             <div class="col-md-8 card-info card-info-container">
                 <div class="card-body">
                     <h5 class="card-title">{{ author.full_name }}</h5>
-                    <p class="card-text mb-0"><small class="text-muted">Genre: <b><a style="text-decoration: none; color: gray" href="{% url 'filtered author list' genre_slug %}">{{ author.genre }}</a></b></small></p>
+                    <p class="card-text mb-0"><small class="text-muted">Genre: <b><a
+                            style="text-decoration: none; color: gray"
+                            href="{% url 'filtered author list' genre_slug %}">{{ author.genre }}</a></b></small></p>
                     <p class="card-text mb-0"><small class="text-muted">Posted by
                         <b><a style="text-decoration: none; color: gray"
-                              href="{% url 'details profile' creator_profile.user_id %}">{{ creator_profile.full_name }}</a></b>
+                              href="{% url 'details profile' creator_profile.user_id %}">{{ creator_user.username }}</a></b>
                     </small></p>
-                     <p class="card-text"><small class="text-muted">Posted on {{ author.publication_date_and_time }}</small></p>
+
+                    <p class="card-text"><small class="text-muted">Posted
+                        on {{ author.publication_date_and_time }}</small></p>
                     <p class="card-text">{{ author.biography }}</p>
 
                 </div>

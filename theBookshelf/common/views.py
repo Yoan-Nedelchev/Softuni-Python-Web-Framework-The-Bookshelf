@@ -34,13 +34,17 @@ def search(request):
 
         authors_found = search_authors(data)
         books_found = Book.objects.filter(title__icontains=data)
+        data_found = True
+        if not authors_found and not books_found:
+            data_found = False
 
         print(authors_found)
         print(books_found)
 
         context = {
             'authors_found': authors_found,
-            'books_found': books_found
+            'books_found': books_found,
+            'data_found': data_found
         }
 
         return render(request, 'common/search.html', context)
@@ -75,6 +79,8 @@ def statistics(request):
     context = {
         'books_max_likes': books_with_max_likes,
         'books_max_reviews': books_with_max_reviews,
+        'max_likes': max_likes,
+        'max_reviews': max_reviews
     }
     return render(request, 'common/statistics.html', context)
 

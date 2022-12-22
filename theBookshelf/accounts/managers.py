@@ -10,8 +10,9 @@ class AppUserManager(base_user.BaseUserManager):
     def _create_user(self, username, email, password, **extra_fields):
         if not username:
             raise ValueError("The given username must be set")
-
         email = self.normalize_email(email)
+        if not email:
+            raise ValueError("The given email must be set")
         GlobalUserModel = apps.get_model(self.model._meta.app_label, self.model._meta.object_name)
         username = GlobalUserModel.normalize_username(username)
         user = self.model(username=username, email=email, **extra_fields)

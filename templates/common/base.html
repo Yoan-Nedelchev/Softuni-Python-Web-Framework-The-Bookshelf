@@ -30,6 +30,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'index' %}">HOME</a>
                     </li>
+                <p class="m-auto"><b>Welcome, {{ request.user.username }}</b></p>
                     <li class="nav-item dropdown">
                         <a style="color: black" class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                            role="button"
@@ -67,14 +68,14 @@
                         {#<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>#}
                         {#</li>#}
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page"
-                               href="{% url 'details profile' pk=request.user.pk %}">PROFILE</a>
                             {% if request.user.is_staff or request.user.is_superuser %}
                                 <li class="nav-item">
-                                <a class="nav-link active" aria-current="page"
-                                   href="{% url 'statistics' %}">STATISTICS</a>
-                                   </li>
+                                    <a class="nav-link active" aria-current="page"
+                                       href="{% url 'statistics' %}">STATISTICS</a>
+                                </li>
                             {% endif %}
+                        <a class="nav-link active" aria-current="page"
+                           href="{% url 'details profile' pk=request.user.pk %}">PROFILE</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{% url 'sign out' %}">LOGOUT</a>

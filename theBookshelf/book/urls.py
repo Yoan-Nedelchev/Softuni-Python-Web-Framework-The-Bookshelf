@@ -12,7 +12,7 @@ urlpatterns = (
     path('book/<slug:slug>/', include([
         path('', DetailsBookView.as_view(), name='details book'),
         path('like/', LikeBookView.as_view(), name='like book'),
-        path('comment/', include([
+        path('review/', include([
             path('', AddReviewView.as_view(), name='comment book'),
             path('edit/<int:pk>', EditReviewView.as_view(), name='edit review'),
             path('delete/<int:pk>', DeleteReviewView.as_view(), name='delete review')

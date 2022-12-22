@@ -8,7 +8,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<body>
 {% block content %}
     <h1 class="text-center mt-4">Welcome to the Bookshelf!</h1>
     <h4 class="text-center text-muted mb-5">The place for every book-lover.</h4>
@@ -30,7 +29,7 @@
             </div>
         </div>
 
-        <div class="book-slider">
+        <div class="book-slider" style="max-height: 1000px">
             <h4 class="text-center mb-4">NEW BOOKS</h4>
             <div id="carouselExampleIndicators" class="carousel slide carousel m-auto" data-bs-ride="carousel">
                 <div class="carousel-indicators">
@@ -79,5 +78,4 @@
 
 
 {% endblock %}
-</body>
 </html>

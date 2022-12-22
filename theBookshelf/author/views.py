@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.utils.text import slugify
 
-from theBookshelf.accounts.models import Profile
+from theBookshelf.accounts.models import Profile, AppUser
 from theBookshelf.author.forms.add_author import AddAuthorForm
 from theBookshelf.author.forms.edit_author import EditAuthorForm
 from theBookshelf.author.models import Author
@@ -78,12 +78,14 @@ class DetailsAuthorView(LoginRequiredMixin, DetailView):
         is_owner = author.creator == self.request.user
         books = Book.objects.filter(author_id=author.id)
         creator_profile = Profile.objects.get(user_id=author.creator_id)
+        creator_user = AppUser.objects.get(id=author.creator_id)
 
         genre_slug = slugify(author.genre)
         context['is_owner'] = is_owner
         context['books'] = books
         context['creator_profile'] = creator_profile
         context['genre_slug'] = genre_slug
+        context['creator_user'] = creator_user
 
         return context
 
