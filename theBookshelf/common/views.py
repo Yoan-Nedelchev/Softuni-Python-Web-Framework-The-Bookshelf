@@ -1,11 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect
-from django.db.models import Q, Max, Count
+from django.shortcuts import render
+from django.db.models import Q, Max
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
-
 from theBookshelf.author.models import Author
-from theBookshelf.book.models import Book, Like
+from theBookshelf.book.models import Book
 from theBookshelf.common.forms.feedback_form import FeedbackForm
 from theBookshelf.common.models import News, Feedback
 

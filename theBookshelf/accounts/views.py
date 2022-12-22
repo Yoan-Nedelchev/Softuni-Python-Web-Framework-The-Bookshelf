@@ -1,19 +1,16 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
-
-from django.contrib.auth import views as auth_views, login
+from django.contrib.auth import views as auth_views, login, get_user_model
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.views.generic import DetailView, UpdateView, DeleteView
-
 from theBookshelf.accounts.forms.edit_profile import EditProfileForm
 from theBookshelf.accounts.forms.login import LoginForm
 from theBookshelf.accounts.forms.sign_up import SignUpForm
-
 from theBookshelf.accounts.models import Profile, AppUser
 from theBookshelf.author.models import Author
 from theBookshelf.book.models import Book
 
+UserModel = get_user_model()
 
 class SignUpView(views.CreateView):
     template_name = 'accounts/sign-up.html'
@@ -46,7 +43,7 @@ class ProfileDetailsView(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         profile = context['profile']
 
-        app_user = AppUser.objects.get(pk=profile.user_id)
+        app_user = UserModel.objects.get(pk=profile.user_id)
         is_owner = profile.pk == self.request.user.pk
         books_posted = Book.objects.filter(creator_id=profile.user_id)
         authors_created = Author.objects.filter(creator_id=profile.user_id)
@@ -70,5 +67,5 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
 
 class DeleteAccountView(LoginRequiredMixin, DeleteView):
     template_name = 'accounts/delete_account.html'
-    model = AppUser
+    model = UserModel
     success_url = reverse_lazy('index')

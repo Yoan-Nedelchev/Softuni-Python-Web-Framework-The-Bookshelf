@@ -1,14 +1,17 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import DetailView, CreateView, FormView, ListView, UpdateView, DeleteView
-
+from django.views.generic import DetailView, CreateView, ListView, UpdateView, DeleteView
 from theBookshelf.accounts.models import AppUser, Profile
 from theBookshelf.book.forms.create_book import CreateBookForm
 from theBookshelf.book.forms.edit_book import EditBookForm
 from theBookshelf.book.forms.edit_review import EditReviewForm
 from theBookshelf.book.models import Book, Like, BookReview
+
+
+UserModel = get_user_model()
 
 
 def book_genres(request):
@@ -70,11 +73,11 @@ class DetailsBookView(LoginRequiredMixin, DetailView):
         is_liked_by_user = book.like_set.filter(user_id=self.request.user.id).exists()
         reviews = book.bookreview_set.filter(book_id=book.pk).all()
         creator_profile = Profile.objects.get(user_id=book.creator_id)
-        creator_user = AppUser.objects.get(id=book.creator_id)
+        creator_user = UserModel.objects.get(id=book.creator_id)
 
         reviews_complete_info = []
         for review in reviews:
-            user = AppUser.objects.get(id=review.user_id)
+            user = UserModel.objects.get(id=review.user_id)
             reviews_complete_info.append({
                 'content': review.content,
                 'creator': user.username,
@@ -216,7 +219,7 @@ class EditReviewView(LoginRequiredMixin, UpdateView):
 
         reviews_complete_info = []
         for review in reviews:
-            user = AppUser.objects.get(id=review.user_id)
+            user = UserModel.objects.get(id=review.user_id)
             reviews_complete_info.append({
                 'content': review.content,
                 'creator': user.username,

@@ -1,15 +1,16 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.utils.text import slugify
-
 from theBookshelf.accounts.models import Profile, AppUser
 from theBookshelf.author.forms.add_author import AddAuthorForm
 from theBookshelf.author.forms.edit_author import EditAuthorForm
 from theBookshelf.author.models import Author
-from django.views.generic import DetailView, CreateView, FormView, ListView, UpdateView, DeleteView
-
+from django.views.generic import DetailView, CreateView, ListView, UpdateView, DeleteView
 from theBookshelf.book.models import Book
+
+UserModel = get_user_model()
 
 
 def author_genres(request):
@@ -78,7 +79,7 @@ class DetailsAuthorView(LoginRequiredMixin, DetailView):
         is_owner = author.creator == self.request.user
         books = Book.objects.filter(author_id=author.id)
         creator_profile = Profile.objects.get(user_id=author.creator_id)
-        creator_user = AppUser.objects.get(id=author.creator_id)
+        creator_user = UserModel.objects.get(id=author.creator_id)
 
         genre_slug = slugify(author.genre)
         context['is_owner'] = is_owner
