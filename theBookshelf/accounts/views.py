@@ -6,11 +6,12 @@ from django.views.generic import DetailView, UpdateView, DeleteView
 from theBookshelf.accounts.forms.edit_profile import EditProfileForm
 from theBookshelf.accounts.forms.login import LoginForm
 from theBookshelf.accounts.forms.sign_up import SignUpForm
-from theBookshelf.accounts.models import Profile, AppUser
+from theBookshelf.accounts.models import Profile
 from theBookshelf.author.models import Author
 from theBookshelf.book.models import Book
 
 UserModel = get_user_model()
+
 
 class SignUpView(views.CreateView):
     template_name = 'accounts/sign-up.html'

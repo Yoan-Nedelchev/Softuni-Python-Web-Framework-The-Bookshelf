@@ -24,7 +24,7 @@
     {% if books_max_reviews %}
         <div class="mt-5" style="max-width: 800px; display: flex; flex-direction: column; margin: auto">
             {% if books_max_reviews.count > 1 %}
-                <h3>Books with most reviews | number of reviews: {{ max_reviews }}</h3>
+                <h3>Books with most reviews ({{ books_max_reviews.count }}) | number of reviews: {{ max_reviews }}</h3>
             {% else %}
                 <h3>Book with most reviews | number of reviews: {{ max_reviews }}</h3>
             {% endif %}

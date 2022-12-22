@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.utils.text import slugify
-from theBookshelf.accounts.models import Profile, AppUser
+from theBookshelf.accounts.models import Profile
 from theBookshelf.author.forms.add_author import AddAuthorForm
 from theBookshelf.author.forms.edit_author import EditAuthorForm
 from theBookshelf.author.models import Author

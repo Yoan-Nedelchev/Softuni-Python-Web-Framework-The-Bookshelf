@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import DetailView, CreateView, ListView, UpdateView, DeleteView
-from theBookshelf.accounts.models import AppUser, Profile
+from theBookshelf.accounts.models import Profile
 from theBookshelf.book.forms.create_book import CreateBookForm
 from theBookshelf.book.forms.edit_book import EditBookForm
 from theBookshelf.book.forms.edit_review import EditReviewForm
