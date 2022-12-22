@@ -30,7 +30,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'index' %}">HOME</a>
                     </li>
-                <p class="m-auto"><b>Welcome, {{ request.user.username }}</b></p>
+                    {% if request.user.is_authenticated %}
+                        <p class="m-auto"><b>Welcome, {{ request.user.username }}</b></p>
+                    {% endif %}
                     <li class="nav-item dropdown">
                         <a style="color: black" class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                            role="button"
