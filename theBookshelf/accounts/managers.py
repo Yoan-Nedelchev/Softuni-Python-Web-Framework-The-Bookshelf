@@ -8,9 +8,6 @@ class AppUserManager(base_user.BaseUserManager):
     use_in_migrations = True
 
     def _create_user(self, username, email, password, **extra_fields):
-        """
-        Create and save a user with the given username, email, and password.
-        """
         if not username:
             raise ValueError("The given username must be set")
 
